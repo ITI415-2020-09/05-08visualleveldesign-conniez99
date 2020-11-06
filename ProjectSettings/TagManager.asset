@@ -9,6 +9,7 @@ TagManager:
   - Wall
   - Wall out
   - Building
+  - Goal
   layers:
   - Default
   - TransparentFX

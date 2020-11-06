@@ -3,7 +3,13 @@ guid: 76d67d98f8d51904e9dbaa7ef3d36eae
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - Swimming: {instanceID: 0}
+  - Collect: {instanceID: 0}
+  - audioS: {instanceID: 0}
+  - MainMusic: {fileID: 24500006, guid: 7fc41294369376048ae4f3a3e7975fc8, type: 2}
+  - OtherMusic: {fileID: -4767820527781316463, guid: 7fc41294369376048ae4f3a3e7975fc8, type: 2}
+  - Winner: {fileID: -8385474691054859148, guid: 7fc41294369376048ae4f3a3e7975fc8, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

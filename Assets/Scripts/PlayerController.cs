@@ -3,19 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System.Runtime.InteropServices;
+using UnityEngine.SceneManagement;
+
 
 public class PlayerController : MonoBehaviour
 {
     public TextMeshProUGUI countText;
     public TextMeshProUGUI TimerText;
-    private int count;
+    public GameObject loseText;
+    public GameObject winText;
+    static public int count = 0;
     public float timeRemaining = 180;
-    private bool timerIsRunning = false;
-    public GameObject winTextObject;
+    static public bool timerIsRunning = false;
+
     // Start is called before the first frame update
     void Start()
     {
         timerIsRunning = true;
+        loseText.SetActive(false);
+        winText.SetActive(false);
     }
 
     // Update is called once per frame
@@ -35,7 +41,24 @@ public class PlayerController : MonoBehaviour
                 else
                 {
                     TimerText.text = "Time Remaining: " + minutes.ToString() + ":" + seconds.ToString();
-                }             
+                }
+            }
+            else
+            {
+                timerIsRunning = false;
+                loseText.SetActive(true);
+                TimerText.text = "Time Remaining: 0:00";
+            }
+            if (Goal.goalMet)
+            {
+                timerIsRunning = false;
+            }
+        }
+        else
+        {
+            if (Input.GetKeyDown("r"))
+            {
+                SceneManager.LoadScene("04-CollectionGame");
             }
         }
     }
@@ -43,21 +66,30 @@ public class PlayerController : MonoBehaviour
     void SetCountText()
     {
         countText.text = "Collected: " + count.ToString() + " of 15";
-        if (count >= 20)
-        {
-            winTextObject.SetActive(true);
-        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("PickUp"))
+        if (timerIsRunning)
         {
-            other.gameObject.SetActive(false);
-            count = count + 1;
+            if (other.gameObject.CompareTag("PickUp"))
+            {
+                other.gameObject.SetActive(false);
+                count = count + 1;
 
-            SetCountText();
+                SetCountText();
+            }
+            if (other.gameObject.CompareTag("Goal"))
+            {
+                if (count == 15)
+                {
+                    Goal.goalMet = true;
+                    winText.SetActive(true);
+                }
+
+            }
         }
+
     }
 
 }
