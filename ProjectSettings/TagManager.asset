@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Water
   - PickUp
+  - Wall
+  - Wall out
+  - Building
   layers:
   - Default
   - TransparentFX

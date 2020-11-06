@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerAudio : MonoBehaviour
 {
     public AudioClip Swimming;
+    public AudioClip Collect;
     public AudioSource audioS;
 
     private void OnTriggerEnter(Collider other)
@@ -14,6 +15,11 @@ public class PlayerAudio : MonoBehaviour
         {
             print("in");
             audioS.clip = Swimming;
+            audioS.Play();
+        }
+        if (other.CompareTag("PickUp"))
+        {
+            audioS.clip = Collect;
             audioS.Play();
         }
     }
